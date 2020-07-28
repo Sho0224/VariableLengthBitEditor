@@ -3,13 +3,17 @@ import logging
 # reference https://qiita.com/__init__/items/91e5841ed53d55a7895e
 
 def main():
-    pass
+    bitEditor = BitEditor(size=4,is_debug_log=True)
+    bitEditor.Write(5,0b10101)
+    print(bin(bitEditor.bytes[1]))
 
 class BitEditor:
-    def __init__(self,size):
+    def __init__(self,size=1,is_debug_log=False):
         self.index = 0
         self.empty_bits = 8
         self.bytes = bytearray(range(size))
+        if is_debug_log:
+            logging.basicConfig(level=logging.DEBUG)
 
     def Write(self,bit_count,value):
         logging.debug('value:{}'.format(bin(value)))
