@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import logging
+# reference https://qiita.com/__init__/items/91e5841ed53d55a7895e
 
 def main():
     pass
