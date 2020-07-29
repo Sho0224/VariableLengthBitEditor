@@ -30,6 +30,7 @@ class BitEditorTest(unittest.TestCase):
         self.assertEqual(0b01100011,bitEditor.bytes[1])
         self.assertEqual(0b00001100,bitEditor.bytes[2])
         self.assertEqual(0b00010000,bitEditor.bytes[3])
+
     def test_push2(self):
         bitEditor = be.BitEditor(size=2)
 
@@ -43,6 +44,7 @@ class BitEditorTest(unittest.TestCase):
 
         byte = bitEditor.Pop(5)
         self.assertEqual(0b10101, byte)
+
     def test_pop2(self):
         bitEditor = be.BitEditor(size=1)
         bitEditor.Push(5,0b10101)
@@ -57,5 +59,19 @@ class BitEditorTest(unittest.TestCase):
         self.assertEqual(0b0, byte)
         byte = bitEditor.Pop(1)
         self.assertEqual(0b1, byte)
+
+    def test_pop3(self):
+        bitEditor = be.BitEditor(size=2, is_debug_log = True)
+        bitEditor.Push(9,0b101010101)
+
+        byte = bitEditor.Pop(6)
+        self.assertEqual(0b101010, byte)
+        byte = bitEditor.Pop(1)
+        self.assertEqual(0b1, byte)
+        byte = bitEditor.Pop(1)
+        self.assertEqual(0b0, byte)
+        byte = bitEditor.Pop(1)
+        self.assertEqual(0b1, byte)
+ 
 if __name__ == "__main__":
     unittest.main()
