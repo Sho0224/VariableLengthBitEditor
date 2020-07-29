@@ -49,8 +49,13 @@ class BitEditorTest(unittest.TestCase):
 
         byte = bitEditor.Pop(1)
         self.assertEqual(0b1, byte)
-
         byte = bitEditor.Pop(1)
         self.assertEqual(0b0, byte)
+        byte = bitEditor.Pop(1)
+        self.assertEqual(0b1, byte)
+        byte = bitEditor.Pop(1)
+        self.assertEqual(0b0, byte)
+        byte = bitEditor.Pop(1)
+        self.assertEqual(0b1, byte)
 if __name__ == "__main__":
     unittest.main()

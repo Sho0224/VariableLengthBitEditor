@@ -36,8 +36,8 @@ class BitEditor:
                 self.bytes[self.index] = 0
 
     def Pop(self,bit_count):
-        self.bytes[0] = self.bytes[0] >> (self.__BYTE_BIT_SIZE - bit_count)
-        b = self.bytes[0]
+        b = self.bytes[0] >> (self.__BYTE_BIT_SIZE - bit_count)
+        self.bytes[0] = 0b11111111 & (self.bytes[0] << bit_count)
         logging.debug('b:{}'.format(bin(b)))
         return b 
 if __name__ == '__main__': main()
