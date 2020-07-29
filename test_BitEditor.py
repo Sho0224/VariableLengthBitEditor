@@ -30,5 +30,11 @@ class BitEditorTest(unittest.TestCase):
         self.assertEqual(0b01100011,bitEditor.bytes[1])
         self.assertEqual(0b00001100,bitEditor.bytes[2])
         self.assertEqual(0b00010000,bitEditor.bytes[3])
+    def test_read(self):
+        bitEditor = be.BitEditor(size=1)
+        bitEditor.Write(5,0b10101)
+
+        bytes = bitEditor.Read(5)
+        self.assertEqual(0b10101, bytes[0])
 if __name__ == "__main__":
     unittest.main()

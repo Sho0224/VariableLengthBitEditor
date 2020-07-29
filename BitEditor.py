@@ -7,9 +7,11 @@ def main():
 
 class BitEditor:
     def __init__(self,size):
+        self.__BYTE_BIT_SIZE = 8
         self.index = 0
-        self.empty_bits = 8
-        self.bytes = bytearray(range(size))
+        self.empty_bits = self.__BYTE_BIT_SIZE 
+        self.size = size 
+        self.bytes = bytearray(range(self.size))
 
     def Write(self,bit_count,value):
         logging.debug('value:{}'.format(bin(value)))
@@ -26,7 +28,12 @@ class BitEditor:
 
             if self.empty_bits == 0:
                 self.index+=1
-                self.empty_bits = 8
+                self.empty_bits = self.__BYTE_BIT_SIZE
                 self.bytes[self.index] = 0
 
+    def Read(self,bit_count):
+        readbytes = bytearray(range(self.size))
+        readbytes[0] = self.bytes[0] >> (self.__BYTE_BIT_SIZE - bit_count)
+        print('readbyte:{}'.format(bin(readbytes[0])))
+        return readbytes 
 if __name__ == '__main__': main()
