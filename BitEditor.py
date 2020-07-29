@@ -18,6 +18,8 @@ class BitEditor:
             logging.basicConfig(level=logging.DEBUG)
 
     def Push(self,bit_count,value):
+        if self.empty_bits == 0:
+            return
         logging.debug('value:{}'.format(bin(value)))
         for i in reversed(range(bit_count)):
             logging.debug('i:{}'.format(i))
@@ -30,10 +32,11 @@ class BitEditor:
             logging.debug('one_bit:{}'.format(bin(one_bit)))
             logging.debug('self.bytes[{}]:{}'.format(self.index,bin(self.bytes[self.index])))
 
-            if self.empty_bits == 0:
-                self.index+=1
-                self.empty_bits = self.__BYTE_BIT_SIZE
-                self.bytes[self.index] = 0
+            if self.index < self.size - 1:
+                if self.empty_bits == 0:
+                    self.index+=1
+                    self.empty_bits = self.__BYTE_BIT_SIZE
+                    self.bytes[self.index] = 0
 
     def Pop(self,bit_count):
         if self.size <= 1:

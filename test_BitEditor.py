@@ -38,6 +38,14 @@ class BitEditorTest(unittest.TestCase):
         self.assertEqual(0b10101010,bitEditor.bytes[0])
         self.assertEqual(0b10000000,bitEditor.bytes[1])
 
+    def test_push3(self):
+        bitEditor = be.BitEditor(size=1)
+
+        bitEditor.Push(8,0b10101010)
+        self.assertEqual(0b10101010,bitEditor.bytes[0])
+        bitEditor.Push(2,0b1)
+        self.assertEqual(0b10101010,bitEditor.bytes[0])
+
     def test_pop1(self):
         bitEditor = be.BitEditor(size=1)
         bitEditor.Push(5,0b10101)
