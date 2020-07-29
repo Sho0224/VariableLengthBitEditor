@@ -32,8 +32,8 @@ class BitEditor:
                 self.bytes[self.index] = 0
 
     def Read(self,bit_count):
-        readbytes = bytearray(range(self.size))
-        readbytes[0] = self.bytes[0] >> (self.__BYTE_BIT_SIZE - bit_count)
-        print('readbyte:{}'.format(bin(readbytes[0])))
-        return readbytes 
+        self.bytes[0] = self.bytes[0] >> (self.__BYTE_BIT_SIZE - bit_count)
+        b = self.bytes[0]
+        logging.debug('b:{}'.format(bin(b)))
+        return b 
 if __name__ == '__main__': main()
