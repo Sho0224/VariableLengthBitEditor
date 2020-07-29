@@ -13,7 +13,7 @@ class BitEditor:
         self.size = size 
         self.bytes = bytearray(range(self.size))
 
-    def Write(self,bit_count,value):
+    def Push(self,bit_count,value):
         logging.debug('value:{}'.format(bin(value)))
         for i in reversed(range(bit_count)):
             logging.debug('i:{}'.format(i))
@@ -31,7 +31,7 @@ class BitEditor:
                 self.empty_bits = self.__BYTE_BIT_SIZE
                 self.bytes[self.index] = 0
 
-    def Read(self,bit_count):
+    def Pop(self,bit_count):
         self.bytes[0] = self.bytes[0] >> (self.__BYTE_BIT_SIZE - bit_count)
         b = self.bytes[0]
         logging.debug('b:{}'.format(bin(b)))
