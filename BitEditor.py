@@ -18,6 +18,7 @@ class BitEditor:
             logging.basicConfig(level=logging.DEBUG)
 
     def Push(self,bit_count,value):
+        self.bytes[self.index] = self.bytes[self.index] << self.empty_bits
         if self.empty_bits == 0:
             return
         logging.debug('value:{}'.format(bin(value)))
@@ -37,8 +38,10 @@ class BitEditor:
                     self.index+=1
                     self.empty_bits = self.__BYTE_BIT_SIZE
                     self.bytes[self.index] = 0
+        self.bytes[self.index] = self.bytes[self.index] >> self.empty_bits
 
     def Pop(self,bit_count):
+        self.bytes[self.index] = self.bytes[self.index] << self.empty_bits
         if self.size <= 1:
             b = self.bytes[0] >> (self.__BYTE_BIT_SIZE - bit_count)
             self.bytes[0] = 0b11111111 & (self.bytes[0] << bit_count)
@@ -53,5 +56,6 @@ class BitEditor:
             print('top:{}'.format(bin(top)))
             print('b:{}'.format(bin(b)))
 
+        self.bytes[self.index] = self.bytes[self.index] >> self.empty_bits
         return b 
 if __name__ == '__main__': main()
