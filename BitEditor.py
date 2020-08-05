@@ -18,6 +18,8 @@ class BitEditor:
             logging.basicConfig(level=logging.DEBUG)
 
     def Push(self,bit_count,value):
+        if value == 0:
+            return
         self.bytes[self.index] = self.bytes[self.index] << self.empty_bits
         if self.empty_bits == 0:
             return
